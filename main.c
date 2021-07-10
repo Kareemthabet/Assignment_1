@@ -63,7 +63,7 @@ void LinkedL_insert_at_middle(struct Node** head_ref,struct Node** tail_ref,stru
             double_step_traverse=double_step_traverse->next->next;
         }
 
-        /4. insert at middle/
+        //4. insert at middle/
         new_node->next = single_step_traverse->next;
         single_step_traverse->next = new_node;
 
@@ -154,24 +154,6 @@ void show(struct Node*head_ref)
 }
 
 
-
-struct student get_data_from_user()
-{
-    struct student new_student;
-    printf("\n");
-    printf("Add name of student\n");
-    scanf("%s",&(new_student).name);
-    printf("Add id of student\n");
-    scanf("%d",&(new_student).id_number);
-    printf("Add date of birth of student\n");
-    scanf("%d",&(new_student).date.day);
-    scanf("%d",&(new_student).date.month);
-    scanf("%d",&(new_student).date.year);
-    printf("Add score of student\n");
-    scanf("%d",&(new_student).score);
-    return new_student;
-}
-
  void array_insert_at_biggining(  struct student *p, int arr_size,struct student new_student)
  {    int new_size=arr_size+1;
      p = ( struct student*) realloc(p,new_size* sizeof( struct student));
@@ -254,8 +236,10 @@ void show_array(struct student *p,int arr_size)
   int N;   //Number of students
     scanf("%d",&N);
     printf("enter 1 to use linked list or 2 for arrays");
+    int h;
   scanf("%d",&h);
   switch(h)
+  {
   case 1:{
       struct Node* head=NULL;
     struct Node* tail=NULL;
@@ -308,7 +292,7 @@ free(tail);
 
 
       break;}
-  case 2:{}
+  case 2:{
 struct student *ptr;
   ptr = ( struct student *) calloc(N, sizeof( struct student));
   int k;
@@ -364,6 +348,8 @@ while (exit_program)
   scanf("%d",&exit_program);
 
 break;}
+  }
+  }
   return 0;
   }
 
