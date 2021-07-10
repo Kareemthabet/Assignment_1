@@ -155,116 +155,109 @@ void show(struct Node*head_ref)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-struct Node* head=NULL;
+struct student get_data_from_user()
+{
+    struct student new_student;
+    printf("\n");
+    printf("Add name of student\n");
+    scanf("%s",&(new_student).name);
+    printf("Add id of student\n");
+    scanf("%d",&(new_student).id_number);
+    printf("Add date of birth of student\n");
+    scanf("%d",&(new_student).date.day);
+    scanf("%d",&(new_student).date.month);
+    scanf("%d",&(new_student).date.year);
+    printf("Add score of student\n");
+    scanf("%d",&(new_student).score);
+    return new_student;
+}
+
+ void array_insert_at_biggining(  struct student *p, int arr_size,struct student new_student)
+ {    int new_size=arr_size+1;
+     p = ( struct student*) realloc(p,new_size* sizeof( struct student));
+   for(int i=new_size-1;i>0;i--)
+   {
+       p[i]=p[i-1];
+   }
+    strcpy(p->name,new_student.name);
+    p->id_number=new_student.id_number;
+    p->date.day=new_student.date.day;
+    p->date.month=new_student.date.month;
+    p->date.year=new_student.date.year;
+    p->score=new_student.score;
+
+ }
+ void array_insert_at_middle( struct student *p, int arr_size,struct student new_student)
+ {
+    int new_size=arr_size+1;
+     p = ( struct student*) realloc(p,new_size* sizeof( struct student));
+     int index;
+     if (arr_size%2==0) //even
+     {
+         index=arr_size/2;
+     }
+     else
+     {
+         index=(arr_size+1)/2;
+     }
+
+
+
+for(int i=new_size-1;i>index;i--)
+   {
+        p[i]=p[i-1];
+   }
+    strcpy((p+index)->name,new_student.name);
+    (p+index)->id_number=new_student.id_number;
+    (p+index)->date.day=new_student.date.day;
+    (p+index)->date.month=new_student.date.month;
+    (p+index)->date.year=new_student.date.year;
+    (p+index)->score=new_student.score;
+ }
+
+void array_insert_at_end( struct student *p, int arr_size,struct student new_student)
+{
+    int new_size=arr_size+1;
+     p = ( struct student*) realloc(p,new_size* sizeof( struct student));
+    strcpy((p+arr_size)->name,new_student.name);
+    (p+arr_size)->id_number=new_student.id_number;
+    (p+arr_size)->date.day=new_student.date.day;
+    (p+arr_size)->date.month=new_student.date.month;
+    (p+arr_size)->date.year=new_student.date.year;
+    (p+arr_size)->score=new_student.score;
+
+}
+void show_array(struct student *p,int arr_size)
+{
+
+    for(int i=0;i<arr_size;i++){
+        printf("---------------------------------------\n");
+        printf("%s  ",(p+i)->name);
+        printf("%d  ",(p+i)->id_number);
+        printf("%d",(p+i)->date.day);
+        printf("/%d",(p+i)->date.month);
+        printf("/%d ",(p+i)->date.year);
+        printf("%d  ",(p+i)->score);
+        printf("\n");
+    }
+    printf("---------------------------------------\n");
+
+}
+
+ int main()
+{
+  printf("Welcome to our project\n");
+  printf("Kareem Ahmed Thabet\n");
+  printf("Kerollos nashaat nageeb\n");
+  printf("Romany sobhy sadek\n");
+  printf("Enter number of students\n");
+  int N;   //Number of students
+    scanf("%d",&N);
+    printf("enter 1 to use linked list or 2 for arrays");
+  scanf("%d",&h);
+  switch(h)
+  case 1:{
+      struct Node* head=NULL;
     struct Node* tail=NULL;
   for(int i=0;i<N;i++)
   {
@@ -314,251 +307,63 @@ free(head);
 free(tail);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- int main()
-{
-  printf("Welcome to our project\n");
-  printf("Kareem Ahmed Thabet\n");
-  printf("Kerollos nashaat nageeb\n");
-  printf("Romany sobhy sadek\n");
-  printf("Enter number of students\n");
-  int N;   //Number of students
-    scanf("%d",&N);
-    printf("enter 1 to use linked list or 2 for arrays");
-  scanf("%d",&h);
-  switch(h)
-  case 1:{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       break;}
   case 2:{}
+struct student *ptr;
+  ptr = ( struct student *) calloc(N, sizeof( struct student));
+  int k;
+  for(int i=0;i<N;i++)
+  {
+    printf("Add name of student\n");
+    scanf("%s",&(ptr+i)->name);
+    printf("Add id of student\n");
+    scanf("%d",&(ptr+i)->id_number);
+    printf("Add date of birth of student\n");
+    scanf("%d",&(ptr+i)->date.day);
+    scanf("%d",&(ptr+i)->date.month);
+    scanf("%d",&(ptr+i)->date.year);
+    printf("Add score of student\n");
+    scanf("%d",&(ptr+i)->score);
+}
+    show_array(ptr,N);
+    int exit_program=1;
+while (exit_program)
+  {
+  printf("where do you want to insert the new data\n");
+  printf("enter 1 to insert in the beginning\n");
+  printf("enter 2 to insert in the middle\n");
+  printf("enter 3 to insert in the end\n");
+  scanf("%d",&k);
+  switch (k)
+  {
+      case 1:
+       {
+           struct student new_student=get_data_from_user();
+           array_insert_at_biggining(ptr,N,new_student);
+           N++;
+        break;
+       }
+      case 2:
+       {
+        struct student new_student=get_data_from_user();
+        array_insert_at_middle(ptr,N,new_student);
+        N++;
+        break;
+       }
+      case 3:
+          {
+        struct student new_student=get_data_from_user();
+       array_insert_at_end(ptr,N,new_student);
+       N++;
+       break;
+          }
+       default: {return 0;}
+  }
+  show_array(ptr,N);
+  printf("if you finished enter zero if not enter 1\n ");
+  scanf("%d",&exit_program);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  break;}
+break;}
   return 0;
   }
 
